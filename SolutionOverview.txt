@@ -1,0 +1,14 @@
+Input Strategy:-
+File
+
+Expense strategy :- interface with function -> evaluate() - equal, exact, percent
+
+Entity: (model)
+1. User :- uid, name, email, mob
+2. Ledger :- uid -> list of <uid, money owed>. Kind of map.
+            Transaction Details<uid, money owed>
+
+
+Validation strategy - percentage, exact
+Display serivce - all balances, single user balance
+Evaluation Strategy :- simplify, basic
