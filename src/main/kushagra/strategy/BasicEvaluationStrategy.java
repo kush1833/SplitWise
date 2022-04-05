@@ -34,7 +34,7 @@ public class BasicEvaluationStrategy implements EvaluationStrategy{
                         validationStrategy = new PercentValidationStrategy();
                     }
 
-                    validationStrategy.validate(input);
+                    boolean t = validationStrategy.validate(input);
                     expenseStrategy.evaluate(ledger, input);
                 } else if (command.equals("SHOW")) {
                     if (stringTokenizer.hasMoreTokens()) {

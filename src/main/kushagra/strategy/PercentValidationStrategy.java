@@ -10,7 +10,7 @@ public class PercentValidationStrategy implements ValidationStrategy{
     @Override
     public boolean validate(String paymentInfo) throws InvalidInputException {
         stringTokenizer = new StringTokenizer(paymentInfo, " ");
-        stringTokenizer.nextToken();
+        stringTokenizer.nextToken();stringTokenizer.nextToken();
         stringTokenizer.nextToken();
         double percent = 0;
         int totalUsers = Integer.parseInt(stringTokenizer.nextToken());

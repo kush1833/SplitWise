@@ -10,7 +10,7 @@ public class ExactValidationStrategy implements ValidationStrategy{
     @Override
     public boolean validate(String paymentInfo) throws InvalidInputException {
         stringTokenizer = new StringTokenizer(paymentInfo, " ");
-        stringTokenizer.nextToken();
+        stringTokenizer.nextToken(); stringTokenizer.nextToken();
         double amountPaid = Double.parseDouble(stringTokenizer.nextToken());
         int totalUsers = Integer.parseInt(stringTokenizer.nextToken());
         for(int i=0;i<totalUsers;i++){

@@ -39,9 +39,10 @@ public class Ledger {
         return this.transactionDetails;
     }
     private int containsUserId(List<TransactionDetails> list, int userId){
-        return IntStream.range(0, list.size())
+        int i = IntStream.range(0, list.size())
                 .filter(id -> list.get(id).getUserId()==userId)
                 .findFirst()
                 .orElse(-1);
+        return i;
     }
 }

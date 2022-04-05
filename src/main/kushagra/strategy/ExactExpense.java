@@ -12,6 +12,7 @@ public class ExactExpense implements ExpenseStrategy{
     @Override
     public void evaluate(Ledger ledger, String paymentInfo) {
         stringTokenizer = new StringTokenizer(paymentInfo," ");
+        stringTokenizer.nextToken();
         int payerId = Integer.parseInt(stringTokenizer.nextToken());
         double amountPaid = Double.parseDouble(stringTokenizer.nextToken());
         int totalUsers = Integer.parseInt(stringTokenizer.nextToken());
