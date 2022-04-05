@@ -1,11 +1,14 @@
 package main.kushagra.strategy;
 
+import main.kushagra.constant.AppConstants;
+import main.kushagra.exception.InvalidInputException;
+
 import java.util.StringTokenizer;
 
-public class PercentValidation implements ValidationStrategy{
+public class PercentValidationStrategy implements ValidationStrategy{
     private StringTokenizer stringTokenizer;
     @Override
-    public boolean validate(String paymentInfo) {
+    public boolean validate(String paymentInfo) throws InvalidInputException {
         stringTokenizer = new StringTokenizer(paymentInfo, " ");
         stringTokenizer.nextToken();
         stringTokenizer.nextToken();
@@ -19,7 +22,7 @@ public class PercentValidation implements ValidationStrategy{
             percent = percent + Double.parseDouble(stringTokenizer.nextToken());
         }
         if(stringTokenizer.hasMoreTokens() || percent != 100){
-            return false;
+            throw new InvalidInputException(AppConstants.INVALID_PERCENT);
         }
         return true;
     }

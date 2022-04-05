@@ -3,12 +3,13 @@ package main.kushagra.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ledger {
     private final HashMap<Integer, User> userIdList;
     private final HashMap<Integer, List<TransactionDetails>> transactionDetails;
 
-    public Ledger(int userId){
+    public Ledger(){
         this.userIdList = new HashMap<>();
         this.transactionDetails = new HashMap<>();
     }
@@ -21,7 +22,12 @@ public class Ledger {
     }
     public void addTransaction(int userId, TransactionDetails detail){
         if(this.transactionDetails.containsKey(userId)){
-            this.transactionDetails.get(userId).add(detail);
+            List<TransactionDetails> detailsList = this.transactionDetails.get(userId);
+            int index;
+            if((index = containsUserId(detailsList, detail.getUserId()))!= -1){
+                TransactionDetails details = detailsList.get(index);
+                details.addToMoneyOwed(detail.getMoneyOwed());
+            }
         }
         else{
             List<TransactionDetails> list = new ArrayList<>();
@@ -31,5 +37,11 @@ public class Ledger {
     }
     public HashMap<Integer,List<TransactionDetails>> getAllTransactionDetails(){
         return this.transactionDetails;
+    }
+    private int containsUserId(List<TransactionDetails> list, int userId){
+        return IntStream.range(0, list.size())
+                .filter(id -> list.get(id).getUserId()==userId)
+                .findFirst()
+                .orElse(-1);
     }
 }

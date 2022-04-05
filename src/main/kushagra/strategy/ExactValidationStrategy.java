@@ -1,11 +1,14 @@
 package main.kushagra.strategy;
 
+import main.kushagra.constant.AppConstants;
+import main.kushagra.exception.InvalidInputException;
+
 import java.util.StringTokenizer;
 
 public class ExactValidationStrategy implements ValidationStrategy{
     private StringTokenizer stringTokenizer;
     @Override
-    public boolean validate(String paymentInfo) {
+    public boolean validate(String paymentInfo) throws InvalidInputException {
         stringTokenizer = new StringTokenizer(paymentInfo, " ");
         stringTokenizer.nextToken();
         double amountPaid = Double.parseDouble(stringTokenizer.nextToken());
@@ -18,7 +21,7 @@ public class ExactValidationStrategy implements ValidationStrategy{
             amountPaid = amountPaid - Double.parseDouble(stringTokenizer.nextToken());
         }
         if(stringTokenizer.hasMoreTokens() || amountPaid != 0){
-            return false;
+            throw new InvalidInputException(AppConstants.INVALID_EXACT);
         }
         return true;
     }
