@@ -24,4 +24,7 @@ public class User {
     public String getPhoneNo(){
         return this.phoneNo;
     }
+    public int getUserId(){
+        return this.userId;
+    }
 }
